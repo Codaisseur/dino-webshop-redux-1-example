@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A dino webshop! Buy your favorite and cute little dino from this Redux-powered React app :D
 
-## Available Scripts
+- [Accompanying lecture recording](https://youtu.be/IwENXJmVdtA)
 
-In the project directory, you can run:
+This small example codebase covers:
 
-### `yarn start`
+**Setting up a Redux store and integrating it with React**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. create a folder `store`
+2. create a reducer inside it
+3. create a store from that reducer using `createStore`
+4. make sure to "configure" that store to connect to the Redux DevTools (using that snippte of code with the `enhancer`)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Using selectors to retrieve data from the store**
 
-### `yarn test`
+1. use the `useSelector` hook
+2. give it a "selector function", which acts as a "description" of what you want from the store's state, or a "retrieve" of the data
+3. if you want to apply sorting or other extra steps, the selector is an excellent place to put that logic
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Dispatching actions from your React components**
 
-### `yarn build`
+1. use the `useDispatch` hook to get the `dispatch` method
+2. use the `dispatch` method to dispatch an action in callback / event handler
+3. make sure you _handle_ the dispatched actions with a `case` in the _reducer_
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Putting these three things together, you can make your reactive state-driven applications ever bigger and more complex! :D
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Design principles applied:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Don't make the state "bigger" than necessary. We didn't store the whole dino objects in the card, only the IDs. The IDs give us _enough information_, and the rest of the object would be _redundant / extra_, so unnecssary.
 
-### `yarn eject`
+- Use _local state_ for state that isn't important anywhere else in the application, like an input field in a form.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Use _global state_ (or _application state_) for stat that relates to "the entire application" or is needed in lots of places. This is like "super lifted state".
